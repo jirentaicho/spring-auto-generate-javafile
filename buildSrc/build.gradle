@@ -1,0 +1,31 @@
+buildscript {
+    ext {
+        springBootVersion = "2.0.6.RELEASE"
+        groovyVersion = "2.5.3"
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: "io.spring.dependency-management"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+dependencyManagement {
+    imports {
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    }
+}
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation "org.apache.commons:commons-lang3"
+    implementation "org.thymeleaf:thymeleaf"
+}
